@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prince Justice Sena — Enigma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #faf9f5;
+    --foreground: #1f1e1c;
+    --muted: #6f6b64;
+    --border: rgba(20, 20, 19, 0.1);
+    --card: #f0eee6;
+    --hatch: rgba(20, 20, 19, 0.07);
+  }
+  :root[data-theme="dark"] {
+    --background: #141413;
+    --foreground: #f5f4f0;
+    --muted: #a39d95;
+    --border: rgba(250, 249, 245, 0.1);
+    --card: #282624;
+    --hatch: rgba(250, 249, 245, 0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background .2s, color .2s;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Page frame: centered column with side rules */
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    min-height: 100vh;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .container { padding: 64px 32px 32px; }
+  .section { padding: 32px; }
+
+  /* Hatched divider */
+  .divider {
+    height: 32px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background-image: repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 8px);
+  }
+
+  /* Header */
+  header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; }
+  h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 27px; line-height: 1.2; letter-spacing: -0.01em; }
+  .role { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .socials { display: flex; gap: 14px; margin-top: 18px; color: var(--muted); }
+  .socials a:hover { color: var(--foreground); }
+  .socials svg { width: 16px; height: 16px; display: block; }
+  .controls { display: flex; gap: 2px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
+  .controls button {
+    background: none; border: 0; color: var(--muted); cursor: pointer;
+    font: 500 12px Inter, sans-serif; padding: 4px 7px; border-radius: 6px; display: flex; align-items: center; gap: 2px;
+  }
+  .controls button:hover { color: var(--foreground); background: var(--border); }
+
+  .intro { color: var(--muted); font-size: 15px; }
+  .intro p + p { margin-top: 16px; }
+  .intro a { color: var(--foreground); font-weight: 500; border-bottom: 1px solid var(--border); transition: border-color .15s; }
+  .intro a:hover { border-color: var(--foreground); }
+
+  /* Section headings */
+  h2 { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 14px; }
+
+  /* Work cards */
+  .work { display: flex; flex-direction: column; gap: 4px; }
+  .work-item {
+    display: block; padding: 12px; border: 1px solid transparent; border-radius: 10px;
+    transition: background .15s, border-color .15s; margin: 0 -12px;
+  }
+  .work-item:hover { background: var(--card); border-color: var(--border); }
+  .work-top { display: flex; justify-content: space-between; align-items: center; }
+  .work-title { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+  .logo { width: 20px; height: 20px; border-radius: 5px; background: var(--card); border: 1px solid var(--border); display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .arrow { color: var(--muted); font-size: 12px; transition: transform .15s; }
+  .work-item:hover .arrow { transform: translate(1px, -1px); color: var(--foreground); }
+  .year { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .desc { color: var(--muted); font-size: 13.5px; margin-top: 4px; padding-left: 30px; max-width: 460px; }
+
+  .view-all { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 14px; margin-top: 14px; }
+  .view-all:hover { color: var(--foreground); }
+
+  /* Writing list */
+  .posts { list-style: none; }
+  .posts a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--border); }
+  .posts li:first-child a { border-top: 1px dashed var(--border); }
+  .posts a:hover .post-title { color: var(--foreground); }
+  .post-title { color: var(--foreground); font-size: 15px; transition: color .15s; }
+  .post-title small { color: var(--muted); font-size: 12px; margin-left: 8px; }
+  .date { color: var(--muted); font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* Awards */
+  .awards { list-style: none; }
+  .awards li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; }
+  .awards li + li { border-top: 1px solid var(--border); }
+  .award-name { font-size: 15px; font-weight: 500; }
+  .award-sub { color: var(--muted); font-size: 13.5px; }
+
+  /* Highlights */
+  .highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .highlight { aspect-ratio: 4/3; border-radius: 10px; background: var(--card); border: 1px solid var(--border); display: flex; align-items: flex-end; padding: 12px; font-size: 13px; color: var(--muted); position: relative; overflow: hidden; }
+  .highlight::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 10px); }
+  .highlight span { position: relative; }
+  .highlight b { color: var(--foreground); font-weight: 500; }
+
+  footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; padding: 16px 32px 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+
+  /* Command palette */
+  .palette-bg { position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(2px); display: none; align-items: flex-start; justify-content: center; padding: 18vh 16px 0; z-index: 10; }
+  .palette-bg.open { display: flex; }
+  .palette { width: 100%; max-width: 480px; background: var(--background); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+  .palette input { width: 100%; background: none; border: 0; border-bottom: 1px solid var(--border); padding: 14px 16px; color: var(--foreground); font: 15px Inter, sans-serif; outline: none; }
+  .palette ul { list-style: none; max-height: 300px; overflow-y: auto; padding: 6px; }
+  .palette li a { display: block; padding: 8px 10px; border-radius: 6px; font-size: 14px; }
+  .palette li a:hover, .palette li.active a { background: var(--card); }
+
+  @media (max-width: 600px) {
+    .container { padding: 40px 16px 24px; }
+    .section { padding: 24px 16px; }
+    footer { padding: 16px 16px 24px; }
+    .frame { border: 0; }
+    .highlights { grid-template-columns: 1fr; }
+    .desc { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <section class="container">
+    <header>
+      <div>
+        <h1>Prince Justice Sena</h1>
+        <div class="role">Enigma</div>
+        <div class="socials">
+          <a href="https://github.com/JUSTICEESSIELP" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+          <a href="https://x.com/sena_justice" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.3h3.4l-7.4 8.4 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9L.9 2.3h7l4.8 6.4 5.5-6.4zm-1.2 17.9h1.9L7.1 4.2H5.1l11.9 16z"/></svg></a>
+          <a href="https://www.linkedin.com/in/essiel-justice/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zM7.1 20.5H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></a>
+          <a href="mailto:justicessiel@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="cmdk" aria-label="Open command menu">⌘K</button>
+        <button id="theme" aria-label="Toggle theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p>I build AI products, data infrastructure and financial systems for real-world markets — from agent workflows for enterprise teams to on-chain lending and savings in Ghana.</p>
+      <p>Currently building <a href="https://ai.workplacefiles.com" target="_blank" rel="noopener">Workplacefiles AI</a>. Core Developer at <a href="https://thegraph.com" target="_blank" rel="noopener">The Graph Protocol</a>. Co-founder &amp; CTO at <a href="https://ecofundme.org" target="_blank" rel="noopener">EcoFundMe</a>.</p>
+      <p>Built <a href="https://solvador.com" target="_blank" rel="noopener">Solvador</a>, winner of Coinbase Batches 003. Onboarded 200+ African builders and co-built the Graph Africa community.</p>
+    </section>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="work">
+    <h2>Work</h2>
+    <div class="work">
+      <a class="work-item" href="https://solvador.com" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">S</span>Solvador <span class="arrow">↗</span></span><span class="year">2026</span></div>
+        <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR. Winner of Coinbase Batches 003.</p>
+      </a>
+      <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
+        <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
+      </a>
+      <a class="work-item" href="https://ai.workplacefiles.com" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">W</span>Workplacefiles AI <span class="arrow">↗</span></span><span class="year">2026</span></div>
+        <p class="desc">AI workflow platform that automates recurring knowledge work — briefs, reports, meeting follow-ups — with reviewable agent outputs, Markdown files and rollback history.</p>
+      </a>
+      <a class="work-item" href="https://shika-finance-stack.pages.dev" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">S</span>Shika Protocol <span class="arrow">↗</span></span><span class="year">2025</span></div>
+        <p class="desc">Modular fintech stack on Base for African markets — identity, cedi stablecoin, ROSCA savings, lending and USSD access. 3,000+ users, 85%+ loan repayment.</p>
+      </a>
+      <a class="work-item" href="https://ecofundme.org" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">E</span>EcoFundMe <span class="arrow">↗</span></span><span class="year">2024</span></div>
+        <p class="desc">Climate crowdfunding with milestone-gated escrow — funds in USDC on Base are released only as verified project milestones are met.</p>
+      </a>
+      <a class="work-item" href="https://blockdor-cebed.web.app" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">B</span>Blockdor <span class="arrow">↗</span></span><span class="year">2023</span></div>
+        <p class="desc">Blockchain mine management for rubber mines in Côte d'Ivoire and gold mines in Ghana, with IoT fingerprint locks.</p>
+      </a>
+      <div class="work-item">
+        <div class="work-top"><span class="work-title"><span class="logo">V</span>AI Video Compliance</span><span class="year">Personal</span></div>
+        <p class="desc">A system that uses AI to check videos for compliance.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="experience">
+    <h2>Experience</h2>
+    <ul class="posts">
+      <li><a href="https://ai.workplacefiles.com" target="_blank" rel="noopener"><span class="post-title">Founder &amp; AI Product Engineer<small>Workplacefiles AI</small></span><span class="date">2026 — NOW</span></a></li>
+      <li><a href="https://solvador.com" target="_blank" rel="noopener"><span class="post-title">Builder<small>Solvador</small></span><span class="date">2026</span></a></li>
+      <li><a><span class="post-title">Machine Learning Engineer<small>Sidakye Solution Limited</small></span><span class="date"></span></a></li>
+      <li><a href="https://thegraph.com" target="_blank" rel="noopener"><span class="post-title">Core Developer<small>The Graph Protocol · Remote</small></span><span class="date">2023 — NOW</span></a></li>
+      <li><a href="https://ecofundme.org" target="_blank" rel="noopener"><span class="post-title">Co-founder &amp; CTO<small>EcoFundMe</small></span><span class="date">2024 — NOW</span></a></li>
+      <li><a href="https://shika-finance-stack.pages.dev" target="_blank" rel="noopener"><span class="post-title">Co-founder &amp; Lead Developer<small>Shika Protocol · OffGrid Labs</small></span><span class="date">2025 — 2026</span></a></li>
+      <li><a href="https://blockdor-cebed.web.app" target="_blank" rel="noopener"><span class="post-title">CTO<small>Blockdor</small></span><span class="date">2023</span></a></li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="awards">
+    <h2>Recognition</h2>
+    <ul class="awards">
+      <li><div><div class="award-name">Coinbase Batches 003</div><div class="award-sub">Winner with Solvador</div></div></li>
+      <li><div><div class="award-name">Renew Capital SPRINT</div><div class="award-sub">Accepted into the cohort with EcoFundMe</div></div></li>
+      <li><div><div class="award-name">$50,000 in grants</div><div class="award-sub">Initial grant funding raised for EcoFundMe</div></div></li>
+      <li><div><div class="award-name">Graph Africa</div><div class="award-sub">Co-built the community and onboarded 200+ African builders</div></div></li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="highlights">
+    <h2>Highlights</h2>
+    <div class="highlights">
+      <div class="highlight"><span><b>Launching</b> — Workplacefiles AI '26</span></div>
+      <div class="highlight"><span><b>Winning</b> — Coinbase Batches 003</span></div>
+      <div class="highlight"><span><b>Community</b> — Graph Africa</span></div>
+      <div class="highlight"><span><b>Fundraising</b> — Renew Capital SPRINT</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Prince Justice Sena</span>
+    <span>Built with care.</span>
+  </footer>
+</div>
+
+<div class="palette-bg" id="palette">
+  <div class="palette" role="dialog" aria-label="Command menu">
+    <input id="palette-input" placeholder="Type a command or search…" autocomplete="off">
+    <ul id="palette-list"></ul>
+  </div>
+</div>
+
+<script>
+  const root = document.documentElement;
+  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  function toggleTheme() {
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  }
+  document.getElementById('theme').onclick = toggleTheme;
+
+  const commands = [
+    { label: 'Work', href: '#work' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Recognition', href: '#awards' },
+    { label: 'Highlights', href: '#highlights' },
+    { label: 'Toggle theme', run: toggleTheme },
+    { label: 'Email me', href: 'mailto:justicessiel@gmail.com' },
+  ];
+  const bg = document.getElementById('palette'), input = document.getElementById('palette-input'), list = document.getElementById('palette-list');
+  let active = 0, shown = [];
+  function render() {
+    const q = input.value.toLowerCase();
+    shown = commands.filter(c => c.label.toLowerCase().includes(q));
+    active = Math.min(active, Math.max(shown.length - 1, 0));
+    list.innerHTML = '';
+    shown.forEach((c, i) => {
+      const li = document.createElement('li'), a = document.createElement('a');
+      a.textContent = c.label; a.href = c.href || '#';
+      a.onclick = e => { if (c.run) { e.preventDefault(); c.run(); } close(); };
+      if (i === active) li.className = 'active';
+      li.appendChild(a); list.appendChild(li);
+    });
+  }
+  function open() { bg.classList.add('open'); input.value = ''; active = 0; render(); input.focus(); }
+  function close() { bg.classList.remove('open'); }
+  document.getElementById('cmdk').onclick = open;
+  bg.onclick = e => { if (e.target === bg) close(); };
+  input.oninput = () => { active = 0; render(); };
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); bg.classList.contains('open') ? close() : open(); return; }
+    if (!bg.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowDown') { active = (active + 1) % shown.length; render(); }
+    if (e.key === 'ArrowUp') { active = (active - 1 + shown.length) % shown.length; render(); }
+    if (e.key === 'Enter' && shown[active]) list.children[active].querySelector('a').click();
+  });
+</script>
+</body>
+</html>
