@@ -1,0 +1,13 @@
+name = "cover-letters"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[vars]
+# Any model AnyAPI offers, in "provider/model" form
+MODEL = "openai/gpt-4o"
+ANYAPI_BASE_URL = "https://api.anyapi.ai/v1"
+ALLOWED_ORIGINS = "https://justiceessielp.github.io,http://localhost:5174"
+
+# Secrets (set with `npx wrangler secret put <NAME>`, never stored here):
+#   ANYAPI_KEY      - AnyAPI key
+#   ADMIN_PASSWORD  - password for the /admin page
