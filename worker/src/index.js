@@ -15,7 +15,7 @@ Experience
 
 Projects
 - Solvador (2026): x402 payment facilitator that lets AI agents pay for APIs; verifies and settles USDC on 15 mainnets; exact, metered and batch-settlement schemes; confidential settlement on Base. Winner of Coinbase Batches 003; listed in the official x402 facilitator directory.
-- AgentSound: pay-per-play music where an AI agent plays songs and each play pays the artist, built on Solvador.
+- AgentSound: pay-per-play music built on Solvador — an AI agent plays songs, each play (about a cent) comes from a prepaid balance within a weekly budget, and artists are paid privately in batches on Base and Arbitrum.
 - ZK Rollup L2 Governance (2025): zero-knowledge layer 2 for on-chain voting, Go backend, Avail data availability.
 - Awards: Arbitrum × StackUp 1st place (2024), Ethereum Safari winner (2024), Stellar Surge winner (2024), Ethereum Accra 1st place (2023), QuickNode Accelerator (2025).
 - Writing: six-part Zero Knowledge Proofs series on dev.to. Talks: Base Africa podcast on trust for the agentic economy; The Graph Builders Office Hours.
@@ -31,7 +31,7 @@ Structure (under 300 words, 4 short paragraphs):
 Tone: direct, warm, confident, plain English. No clichés ("I am writing to express", "passionate", "synergy"). No bullet points in the letter.
 `.trim();
 
-const SYSTEM = `You write cover letters for one candidate. Use ONLY facts from the candidate profile below — never invent employers, numbers, titles or awards. Use ONLY facts about the company that appear in the provided company text; if it is thin, keep company references general rather than guessing. Address the named recipient if given, otherwise "Dear Hiring Team". Return only the letter text.
+const SYSTEM = `You write cover letters for one candidate. Use ONLY facts from the candidate profile below — never invent employers, numbers, titles or awards. Keep the profile's exact wording for traction and status: a sales pipeline is not a pilot or a customer. Never add timeframes such as "last year" that the profile does not state; use the years given. Use ONLY facts about the company that appear in the provided company text. If the company text says "(could not be read)" or is thin, do not name company products or initiatives — refer to the company and role in general terms. Start with a salutation on its own line: "Dear <recipient name>," if a name is given, "Dear <recipient title>," if only a title is given, otherwise "Dear Hiring Team,". Return only the letter text.
 
 CANDIDATE PROFILE
 ${PROFILE}
@@ -86,7 +86,11 @@ async function readPage(url) {
   if (!['http:', 'https:'].includes(u.protocol)) return '';
   try {
     const res = await fetch(u.toString(), {
-      headers: { 'User-Agent': 'Mozilla/5.0 (cover-letter assistant)' },
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
       redirect: 'follow',
       signal: AbortSignal.timeout(10000),
     });
@@ -137,26 +141,47 @@ export default {
       jobText ? `JOB POST TEXT:\n${jobText}` : '',
     ].filter(Boolean).join('\n\n');
 
-    let res;
-    try {
-      res = await fetch(`${env.ANYAPI_BASE_URL}/chat/completions`, {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${env.ANYAPI_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: env.MODEL,
-          temperature: 0.6,
-          messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: user }],
-        }),
-        signal: AbortSignal.timeout(60000),
-      });
-    } catch {
-      return json({ error: 'ai_unreachable' }, 502, headers);
+    const messages = [{ role: 'system', content: SYSTEM }, { role: 'user', content: user }];
+    let last = { detail: 'no model available' };
+    for (const model of modelOrder(env)) {
+      const r = await complete(env, model, messages, 60000);
+      if (r.ok) {
+        workingModel = model;
+        return json({ letter: r.text, model, companyRead: !!companyText, jobRead: !!jobText }, 200, headers);
+      }
+      last = r;
+      if (!r.tryNext) break;
     }
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) return json({ error: 'ai_error', detail: data?.error?.message || `status ${res.status}` }, 502, headers);
-    const letter = data?.choices?.[0]?.message?.content?.trim();
-    if (!letter) return json({ error: 'empty_response' }, 502, headers);
-
-    return json({ letter, companyRead: !!companyText, jobRead: !!jobText }, 200, headers);
+    return json({ error: last.unreachable ? 'ai_unreachable' : 'ai_error', detail: last.detail }, 502, headers);
   },
 };
+
+// Model that last produced a letter in this isolate; tried first next time
+let workingModel = '';
+
+function modelOrder(env) {
+  const list = [env.MODEL, ...String(env.FALLBACK_MODELS || '').split(',')].map((m) => m.trim()).filter(Boolean);
+  return [...new Set([workingModel, ...list].filter(Boolean))];
+}
+
+// One chat completion. tryNext says whether another model might succeed (plan/model errors, empty answers)
+async function complete(env, model, messages, timeoutMs) {
+  let res;
+  try {
+    res = await fetch(`${env.ANYAPI_BASE_URL}/chat/completions`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${env.ANYAPI_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model, temperature: 0.6, messages }),
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch {
+    return { ok: false, unreachable: true, tryNext: true, detail: `${model}: unreachable` };
+  }
+  const data = await res.json().catch(() => ({}));
+  const text = String(data?.choices?.[0]?.message?.content || '').replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+  if (res.ok && text) return { ok: true, text };
+  const msg = data?.error?.message || (res.ok ? 'empty response' : `status ${res.status}`);
+  const authFailure = res.status === 401 || /invalid credentials|api key/i.test(msg);
+  return { ok: false, tryNext: !authFailure, detail: `${model}: ${msg}` };
+}
+
