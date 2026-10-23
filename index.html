@@ -89,6 +89,9 @@
   .logo { width: 20px; height: 20px; border-radius: 5px; background: var(--card); border: 1px solid var(--border); display: grid; place-items: center; font-size: 10px; color: var(--muted); }
   .arrow { color: var(--muted); font-size: 12px; transition: transform .15s; }
   .work-item:hover .arrow { transform: translate(1px, -1px); color: var(--foreground); }
+  .work-title .sub { font-weight: 400; color: var(--muted); font-size: 13px; }
+  .cert { display: flex; justify-content: space-between; gap: 16px; width: 100%; }
+  .cert:hover .award-name { text-decoration: underline; }
   .year { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
   .desc { color: var(--muted); font-size: 13.5px; margin-top: 4px; padding-left: 30px; max-width: 460px; }
 
@@ -170,32 +173,52 @@
 
   <div class="divider"></div>
 
-  <section class="section" id="work">
-    <h2>Work</h2>
+  <section class="section" id="experience">
+    <h2>Work Experience</h2>
+    <div class="work">
+      <a class="work-item" href="https://ai.workplacefiles.com" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">W</span>Founder &amp; AI Product Engineer <span class="arrow">↗</span><small class="sub">Workplacefiles AI</small></span><span class="year">2026 — Now</span></div>
+        <p class="desc">Building an AI workflow platform that automates recurring knowledge work — briefs, reports, meeting follow-ups — with reviewable agent outputs, Markdown files and rollback history.</p>
+      </a>
+      <div class="work-item">
+        <div class="work-top"><span class="work-title"><span class="logo">S</span>Machine Learning Engineer<small class="sub">Sidakye Solution Limited</small></span><span class="year"></span></div>
+        <p class="desc">Machine learning engineering.</p>
+      </div>
+      <a class="work-item" href="https://thegraph.com" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">G</span>Core Developer <span class="arrow">↗</span><small class="sub">The Graph Protocol · Remote</small></span><span class="year">2023 — Now</span></div>
+        <p class="desc">Build and maintain blockchain data-indexing infrastructure that developers query through GraphQL APIs.</p>
+      </a>
+      <a class="work-item" href="https://ecofundme.org" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">E</span>Co-founder &amp; CTO <span class="arrow">↗</span><small class="sub">EcoFundMe</small></span><span class="year">2024 — Now</span></div>
+        <p class="desc">Climate crowdfunding with milestone-gated escrow — funds in USDC on Base are released only as verified project milestones are met.</p>
+      </a>
+      <a class="work-item" href="https://shika-finance-stack.pages.dev" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">S</span>Co-founder &amp; Lead Developer <span class="arrow">↗</span><small class="sub">Shika Protocol · OffGrid Labs</small></span><span class="year">2025 — 2026</span></div>
+        <p class="desc">Modular fintech stack on Base for African markets — identity, cedi stablecoin, ROSCA savings, lending and USSD access. 3,000+ users, 85%+ loan repayment.</p>
+      </a>
+      <a class="work-item" href="https://blockdor-cebed.web.app" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">B</span>CTO <span class="arrow">↗</span><small class="sub">Blockdor</small></span><span class="year">2023</span></div>
+        <p class="desc">Blockchain mine management for rubber mines in Côte d'Ivoire and gold mines in Ghana, with IoT fingerprint locks.</p>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="projects">
+    <h2>Impressive Projects</h2>
     <div class="work">
       <a class="work-item" href="https://solvador.com" target="_blank" rel="noopener">
         <div class="work-top"><span class="work-title"><span class="logo">S</span>Solvador <span class="arrow">↗</span></span><span class="year">2026</span></div>
-        <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR. Winner of Coinbase Batches 003.</p>
+        <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR.</p>
       </a>
       <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
         <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
         <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
       </a>
-      <a class="work-item" href="https://ai.workplacefiles.com" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">W</span>Workplacefiles AI <span class="arrow">↗</span></span><span class="year">2026</span></div>
-        <p class="desc">AI workflow platform that automates recurring knowledge work — briefs, reports, meeting follow-ups — with reviewable agent outputs, Markdown files and rollback history.</p>
-      </a>
-      <a class="work-item" href="https://shika-finance-stack.pages.dev" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">S</span>Shika Protocol <span class="arrow">↗</span></span><span class="year">2025</span></div>
-        <p class="desc">Modular fintech stack on Base for African markets — identity, cedi stablecoin, ROSCA savings, lending and USSD access. 3,000+ users, 85%+ loan repayment.</p>
-      </a>
-      <a class="work-item" href="https://ecofundme.org" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">E</span>EcoFundMe <span class="arrow">↗</span></span><span class="year">2024</span></div>
-        <p class="desc">Climate crowdfunding with milestone-gated escrow — funds in USDC on Base are released only as verified project milestones are met.</p>
-      </a>
-      <a class="work-item" href="https://blockdor-cebed.web.app" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">B</span>Blockdor <span class="arrow">↗</span></span><span class="year">2023</span></div>
-        <p class="desc">Blockchain mine management for rubber mines in Côte d'Ivoire and gold mines in Ghana, with IoT fingerprint locks.</p>
+      <a class="work-item" href="https://youtu.be/IDDnQ85-xOo" target="_blank" rel="noopener">
+        <div class="work-top"><span class="work-title"><span class="logo">Z</span>ZK Rollup L2 Governance <span class="arrow">↗</span></span><span class="year">2025</span></div>
+        <p class="desc">A zero-knowledge rollup layer 2 for on-chain governance and voting, usable by both Web3 and Web2 apps.</p>
       </a>
       <div class="work-item">
         <div class="work-top"><span class="work-title"><span class="logo">V</span>AI Video Compliance</span><span class="year">Personal</span></div>
@@ -206,28 +229,32 @@
 
   <div class="divider"></div>
 
-  <section class="section" id="experience">
-    <h2>Experience</h2>
-    <ul class="posts">
-      <li><a href="https://ai.workplacefiles.com" target="_blank" rel="noopener"><span class="post-title">Founder &amp; AI Product Engineer<small>Workplacefiles AI</small></span><span class="date">2026 — NOW</span></a></li>
-      <li><a href="https://solvador.com" target="_blank" rel="noopener"><span class="post-title">Builder<small>Solvador</small></span><span class="date">2026</span></a></li>
-      <li><a><span class="post-title">Machine Learning Engineer<small>Sidakye Solution Limited</small></span><span class="date"></span></a></li>
-      <li><a href="https://thegraph.com" target="_blank" rel="noopener"><span class="post-title">Core Developer<small>The Graph Protocol · Remote</small></span><span class="date">2023 — NOW</span></a></li>
-      <li><a href="https://ecofundme.org" target="_blank" rel="noopener"><span class="post-title">Co-founder &amp; CTO<small>EcoFundMe</small></span><span class="date">2024 — NOW</span></a></li>
-      <li><a href="https://shika-finance-stack.pages.dev" target="_blank" rel="noopener"><span class="post-title">Co-founder &amp; Lead Developer<small>Shika Protocol · OffGrid Labs</small></span><span class="date">2025 — 2026</span></a></li>
-      <li><a href="https://blockdor-cebed.web.app" target="_blank" rel="noopener"><span class="post-title">CTO<small>Blockdor</small></span><span class="date">2023</span></a></li>
+  <section class="section" id="awards">
+    <h2>Awards</h2>
+    <ul class="awards">
+      <li><div><div class="award-name">Coinbase Batches 003</div><div class="award-sub">Winner with Solvador</div></div></li>
+      <li><div><div class="award-name">$50,000 in grants</div><div class="award-sub">Initial grant funding raised for EcoFundMe</div></div></li>
+      <li><div><div class="award-name">Renew Capital SPRINT</div><div class="award-sub">Selected for the cohort with EcoFundMe</div></div></li>
     </ul>
   </section>
 
   <div class="divider"></div>
 
-  <section class="section" id="awards">
-    <h2>Recognition</h2>
+  <section class="section" id="leadership">
+    <h2>Leadership</h2>
     <ul class="awards">
-      <li><div><div class="award-name">Coinbase Batches 003</div><div class="award-sub">Winner with Solvador</div></div></li>
-      <li><div><div class="award-name">Renew Capital SPRINT</div><div class="award-sub">Accepted into the cohort with EcoFundMe</div></div></li>
-      <li><div><div class="award-name">$50,000 in grants</div><div class="award-sub">Initial grant funding raised for EcoFundMe</div></div></li>
       <li><div><div class="award-name">Graph Africa</div><div class="award-sub">Co-built the community and onboarded 200+ African builders</div></div></li>
+      <li><div><div class="award-name">EcoFundMe</div><div class="award-sub">Co-founder &amp; CTO — leading product, engineering and partnerships with NGOs, governments and academia</div></div></li>
+      <li><div><div class="award-name">Blockdor</div><div class="award-sub">CTO — led the technical build for mine management in Ghana and Côte d'Ivoire</div></div><span class="year">2023</span></li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="certifications">
+    <h2>Certifications</h2>
+    <ul class="awards">
+      <li><a class="cert" href="https://opensea.io/item/polygon/0xdBf2138593aeC61d55d86E80b8ed86D7b9ba51F5/11509" target="_blank" rel="noopener"><div><div class="award-name">ZK Bootcamp <span class="arrow">↗</span></div><div class="award-sub">Encode Club · on-chain certificate on Polygon</div></div><span class="year">Q1 2024</span></a></li>
     </ul>
   </section>
 
@@ -266,9 +293,11 @@
   document.getElementById('theme').onclick = toggleTheme;
 
   const commands = [
-    { label: 'Work', href: '#work' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Recognition', href: '#awards' },
+    { label: 'Work Experience', href: '#experience' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Awards', href: '#awards' },
+    { label: 'Leadership', href: '#leadership' },
+    { label: 'Certifications', href: '#certifications' },
     { label: 'Highlights', href: '#highlights' },
     { label: 'Toggle theme', run: toggleTheme },
     { label: 'Email me', href: 'mailto:justicessiel@gmail.com' },
