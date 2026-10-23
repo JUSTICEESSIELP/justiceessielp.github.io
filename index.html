@@ -108,13 +108,13 @@
   .video-preview .video-label { position: absolute; left: 8px; bottom: 8px; font-size: 12px; color: #fff; background: rgba(0,0,0,.65); padding: 2px 8px; border-radius: 999px; }
   .talk .video-preview { margin-left: 0; max-width: 360px; }
   .talk:hover .video-preview img { transform: scale(1.02); }
-  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+  .gallery { display: grid; grid-template-columns: 1fr; gap: 18px; }
   .gallery figure { margin: 0; }
-  .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); display: block; }
+  .gallery img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; }
   .gallery figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
   .awards li.has-photo { display: block; }
-  .award-photo { margin: 8px 0 0; max-width: 420px; }
-  .award-photo img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
+  .award-photo { margin: 10px 0 0; max-width: 100%; }
+  .award-photo img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; }
   .award-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
   .card-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; padding-left: 30px; font-size: 13px; }
   .card-links a { color: var(--foreground); border-bottom: 1px solid var(--border); }
@@ -343,7 +343,7 @@
     <h2>Awards</h2>
     <ul class="awards">
       <li><div><div class="award-name">Coinbase Batches 003</div><div class="award-sub">Winner with Solvador</div></div></li>
-      <li class="has-photo"><a class="cert" href="assets/dpg-certificate.jpg" target="_blank" rel="noopener"><div><div class="award-name">Digital Public Goods Innovation Contest Awards — Winner <span class="arrow">↗</span></div><div class="award-sub">Greenance (now EcoFundMe), with my co-founder · KOICA-UNICEF program with MEST Africa · view certificate</div></div><span class="year">2024</span></a><figure class="award-photo"><a href="assets/dpg-award-photo.jpg" target="_blank" rel="noopener"><img src="assets/dpg-award-photo.jpg" alt="Receiving the Digital Public Goods Innovation Contest award with my co-founder" loading="lazy" width="1280" height="1041"></a><figcaption>With my co-founder at the Digital Public Goods Innovation Contest Awards, July 2024</figcaption></figure></li>
+      <li class="has-photo"><a class="cert" href="assets/dpg-certificate.jpg" target="_blank" rel="noopener"><div><div class="award-name">Digital Public Goods Innovation Contest Awards — Winner <span class="arrow">↗</span></div><div class="award-sub">Greenance (now EcoFundMe), with my co-founder · KOICA-UNICEF program with MEST Africa · view certificate</div></div><span class="year">2024</span></a><figure class="award-photo"><a href="assets/dpg-award-photo.jpg" target="_blank" rel="noopener"><img src="assets/dpg-award-photo.jpg" alt="Receiving the Digital Public Goods Innovation Contest award with my co-founder" loading="lazy" width="1280" height="960"></a><figcaption>With my co-founder at the Digital Public Goods Innovation Contest Awards, July 2024</figcaption></figure></li>
       <li><div><div class="award-name">Avail Grant — $50,000</div><div class="award-sub">For EcoFundMe and the ZK Rollup L2 Governance, built on Avail's data availability layer</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">QuickNode Accelerator</div><div class="award-sub">With EcoFundMe · pitched to Dragonfly, Halo Capital and other VCs</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">Arbitrum × StackUp Hackathon — 1st Place</div><div class="award-sub">Offline Uniswap DEX · $2,500 and a sponsored trip to DevCon 2024, Bangkok</div></div><span class="year">2024</span></li>
@@ -372,8 +372,8 @@
   <section class="section" id="community">
     <h2>Community — The Graph DevRel in Ghana</h2>
     <div class="gallery">
-      <figure><a href="assets/graph-campus-tour.jpg" target="_blank" rel="noopener"><img src="assets/graph-campus-tour.jpg" alt="Group photo of students at The Graph workshop on the ETHAccra Campus Tour" loading="lazy" width="960" height="1280"></a><figcaption>Running a Graph Protocol workshop on the ETHAccra Campus Tour</figcaption></figure>
-      <figure><a href="assets/graph-workshop.jpg" target="_blank" rel="noopener"><img src="assets/graph-workshop.jpg" alt="Hands-on help with a student&#39;s code during a workshop" loading="lazy" width="1280" height="842"></a><figcaption>Hands-on help as students build their first subgraphs and dApps</figcaption></figure>
+      <figure><a href="assets/graph-campus-tour.jpg" target="_blank" rel="noopener"><img src="assets/graph-campus-tour.jpg" alt="Group photo of students at The Graph workshop on the ETHAccra Campus Tour" loading="lazy" width="960" height="720"></a><figcaption>Running a Graph Protocol workshop on the ETHAccra Campus Tour</figcaption></figure>
+      <figure><a href="assets/graph-workshop.jpg" target="_blank" rel="noopener"><img src="assets/graph-workshop.jpg" alt="Hands-on help with a student&#39;s code during a workshop" loading="lazy" width="1123" height="842"></a><figcaption>Hands-on help as students build their first subgraphs and dApps</figcaption></figure>
     </div>
   </section>
 
@@ -382,6 +382,7 @@
   <section class="section" id="talks">
     <h2>Talks &amp; Pitches</h2>
     <ul class="awards">
+      <li><a class="cert" href="https://x.com/Based_Africa/status/2091813149649371156" target="_blank" rel="noopener"><div><div class="award-name">Base Africa Podcast — Trust for the Agentic Economy <span class="arrow">↗</span></div><div class="award-sub">Conversation with Base (Coinbase) on compliance infrastructure for AI agents: agent identity, verified execution and my journey as a builder</div></div><span class="year">2026</span></a></li>
       <li><a class="cert talk" href="https://www.youtube.com/live/v-WpsBzGd8Y" target="_blank" rel="noopener"><div><div class="award-name">The Graph Builders Office Hours #58 — Building Africa&#39;s Crypto Infra <span class="arrow">↗</span></div><div class="award-sub">Podcast guest on The Graph&#39;s livestream</div><span class="video-preview"><img src="https://i.ytimg.com/vi/v-WpsBzGd8Y/hqdefault.jpg" alt="The Graph Builders Office Hours #58" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span><span class="video-label">Watch · 40 min</span></span></div><span class="year">2024</span></a></li>
       <li><div><div class="award-name">QuickNode Accelerator Pitch Day</div><div class="award-sub">Pitched EcoFundMe to Dragonfly, Halo Capital and 7 other VCs</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">UNICEF Digital Public Goods Stakeholder Forum</div><div class="award-sub">Presented EcoClime Africa's work on Africa's environmental challenges</div></div><span class="year">2024</span></li>
