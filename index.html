@@ -93,6 +93,16 @@
   .cert { display: flex; justify-content: space-between; gap: 16px; width: 100%; }
   .cert:hover .award-name { text-decoration: underline; }
   .year { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding-left: 30px; }
+  .stack span { font-size: 11.5px; padding: 2px 8px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--muted); }
+  .desc b { color: var(--foreground); font-weight: 500; }
+  .desc code { font-size: 12px; padding: 0 4px; border-radius: 4px; background: var(--card); }
+  .video-preview { position: relative; display: block; margin: 10px 0 0 30px; max-width: 420px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--card); }
+  .video-preview img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .2s; }
+  .work-item:hover .video-preview img { transform: scale(1.02); }
+  .video-preview .play { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: rgba(0,0,0,.65); }
+  .video-preview .play::after { content: ""; position: absolute; left: 18px; top: 14px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
+  .video-preview .video-label { position: absolute; left: 8px; bottom: 8px; font-size: 12px; color: #fff; background: rgba(0,0,0,.65); padding: 2px 8px; border-radius: 999px; }
   .card-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; padding-left: 30px; font-size: 13px; }
   .card-links a { color: var(--foreground); border-bottom: 1px solid var(--border); }
   .card-links a:hover { border-color: var(--foreground); }
@@ -154,7 +164,8 @@
     footer { padding: 16px 16px 24px; }
     .frame { border: 0; }
     .highlights { grid-template-columns: 1fr; }
-    .desc, .card-links { padding-left: 0; }
+    .desc, .card-links, .stack { padding-left: 0; }
+    .video-preview { margin-left: 0; }
   }
 </style>
 </head>
@@ -254,16 +265,19 @@
       <div class="work">
         <div class="work-item">
           <div class="work-top"><a class="work-title" href="https://solvador.com" target="_blank" rel="noopener"><span class="logo">S</span>Solvador <span class="arrow">↗</span></a><span class="year">2026</span></div>
-          <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR. Winner of Coinbase Batches 003.</p>
+          <p class="desc">The payment layer agents use to pay for APIs. A server answers an agent with HTTP 402 and a price; the agent signs a USDC payment; Solvador verifies the signature, balance, amount and timing, then settles it on-chain — so the server never holds keys or pays gas. Three schemes: <b>exact</b> (fixed price), <b>upto</b> (metered usage) and <b>batch-settlement</b> (an escrow channel plus off-chain vouchers for high-frequency micropayments). Confidential settlement on Base hides which merchant was paid, and how much they earn, behind encrypted state. Winner of Coinbase Batches 003.</p>
+        <p class="stack"><span>x402</span><span>USDC</span><span>EIP-3009 / Permit2</span><span>Inco Lightning</span><span>15 mainnets: 11 EVM + Solana, NEAR, XRPL, Starknet</span></p>
           <p class="card-links"><a href="https://solvador.com" target="_blank" rel="noopener">solvador.com ↗</a><a href="https://docs.x402.org/dev-tools/facilitators#:~:text=Multi%2Dnetwork%20facilitator%20with%20broad%20mainnet%20coverage%20across%20EVM%20plus%20Solana%20and%20NEAR%2C%20supporting%20multiple%20schemes%20and%20extensions" target="_blank" rel="noopener">Listed in the official x402 facilitator directory ↗</a></p>
         </div>
         <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
           <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
           <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
+          <span class="video-preview"><img src="https://i.ytimg.com/vi/1gg9SztBf8k/hqdefault.jpg" alt="AgentSound demo video" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span><span class="video-label">Watch the demo · 1:26</span></span>
         </a>
         <a class="work-item" href="https://ai.workplacefiles.com" target="_blank" rel="noopener">
           <div class="work-top"><span class="work-title"><span class="logo">W</span>Workplacefiles AI <span class="arrow">↗</span></span><span class="year">2026</span></div>
-          <p class="desc">Agent workflows that automate recurring knowledge work — briefs, reports, meeting follow-ups — with reviewable outputs, Markdown files and rollback history.</p>
+          <p class="desc">A desktop app (Mac and Windows) where AI agents do a team&#39;s recurring work. Knowledge lives as plain Markdown files the team controls. Each agent task has instructions, sources (team files, Slack, Google Drive) and a definition of a good result, and runs on a schedule or on demand. The agent proposes its update as a reviewable change to a file — people keep it, compare it or roll it back, and every version stays in history. Agents are told to flag missing information instead of guessing, and teams bring their own AI account, such as Claude.</p>
+        <p class="stack"><span>Claude</span><span>Agent workflows</span><span>Human-in-the-loop review</span><span>Markdown</span><span>Version history</span><span>Mac / Windows</span></p>
         </a>
       </div>
     </div>
