@@ -124,6 +124,15 @@
   .highlight span { position: relative; }
   .highlight b { color: var(--foreground); font-weight: 500; }
 
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .era + .era { margin-top: 28px; }
+  .era-head { position: relative; display: flex; align-items: baseline; gap: 10px; }
+  .era-dot { position: absolute; left: -20px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--background); border: 1.5px solid var(--muted); }
+  .era:last-child .era-dot { background: var(--foreground); border-color: var(--foreground); }
+  .era-label { font-size: 15px; font-weight: 600; }
+  .era-years { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+  .era-note { color: var(--muted); font-size: 13.5px; margin: 2px 0 10px; }
   .skills { display: grid; gap: 14px; }
   .skills dt { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
   .skills dd { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -217,17 +226,59 @@
   <div class="divider"></div>
 
   <section class="section" id="projects">
-    <h2>Impressive Projects</h2>
-    <div class="work">
-      <div class="work-item">
-        <div class="work-top"><a class="work-title" href="https://solvador.com" target="_blank" rel="noopener"><span class="logo">S</span>Solvador <span class="arrow">↗</span></a><span class="year">2026</span></div>
-        <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR. Winner of Coinbase Batches 003.</p>
-        <p class="card-links"><a href="https://solvador.com" target="_blank" rel="noopener">solvador.com ↗</a><a href="https://docs.x402.org/dev-tools/facilitators#:~:text=Multi%2Dnetwork%20facilitator%20with%20broad%20mainnet%20coverage%20across%20EVM%20plus%20Solana%20and%20NEAR%2C%20supporting%20multiple%20schemes%20and%20extensions" target="_blank" rel="noopener">Listed in the official x402 facilitator directory ↗</a></p>
+    <h2>Impressive Projects — AI</h2>
+    <div class="timeline">
+    <div class="era">
+      <div class="era-head"><span class="era-dot"></span><span class="era-label">Pre-GPT · Deep learning</span><span class="era-years">2020 — 2022</span></div>
+      <p class="era-note">Classic machine learning and deep learning, before ChatGPT.</p>
+      <div class="work">
+        <a class="work-item" href="https://github.com/JUSTICEESSIELP/language-recognition" target="_blank" rel="noopener">
+          <div class="work-top"><span class="work-title"><span class="logo">L</span>Language Identification <span class="arrow">↗</span><small class="sub">Learning project</small></span><span class="year">2020</span></div>
+          <p class="desc">Rebuilt the Hasso Plattner Institute&#39;s CRNN language-identification model (ICONIP 2017) to learn deep learning — a convolutional + recurrent network that tells apart spoken English, German, French, Spanish, Chinese and Russian, served through a small web app. Keras / TensorFlow, Python.</p>
+        </a>
+        <div class="work-item">
+          <div class="work-top"><span class="work-title"><span class="logo">D</span>Dave<small class="sub">Sidakye Solution</small></span><span class="year">2021 — 2022</span></div>
+          <p class="desc">AI analytics for Ghanaian institutional investors — regression models (linear, nonlinear, Bayesian) predicting GDP growth from macroeconomic indicators (R² ≥ 0.6), news-sentiment pipelines and a REST API serving predictions. TensorFlow, scikit-learn.</p>
+        </div>
       </div>
-      <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
-        <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
-      </a>
+    </div>
+    <div class="era">
+      <div class="era-head"><span class="era-dot"></span><span class="era-label">GPT &amp; LLM era</span><span class="era-years">2023 — 2024</span></div>
+      <p class="era-note">Building with transformer models and the first GPT APIs.</p>
+      <div class="work">
+        <a class="work-item" href="https://github.com/JUSTICEESSIELP/KidFriendlySocial" target="_blank" rel="noopener">
+          <div class="work-top"><span class="work-title"><span class="logo">K</span>KidFriendlySocial <span class="arrow">↗</span></span><span class="year">2023</span></div>
+          <p class="desc">A safe social media web app for kids — BERT detects bad language and GPT-3 recommends content. Deployed with Docker and Kubernetes on DigitalOcean, with CI/CD and monitoring.</p>
+        </a>
+      </div>
+    </div>
+    <div class="era">
+      <div class="era-head"><span class="era-dot"></span><span class="era-label">Agentic AI &amp; payments era</span><span class="era-years">2025 — Now</span></div>
+      <p class="era-note">AI agents that act, and the payment rails they need to pay for things.</p>
+      <div class="work">
+        <div class="work-item">
+          <div class="work-top"><a class="work-title" href="https://solvador.com" target="_blank" rel="noopener"><span class="logo">S</span>Solvador <span class="arrow">↗</span></a><span class="year">2026</span></div>
+          <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR. Winner of Coinbase Batches 003.</p>
+          <p class="card-links"><a href="https://solvador.com" target="_blank" rel="noopener">solvador.com ↗</a><a href="https://docs.x402.org/dev-tools/facilitators#:~:text=Multi%2Dnetwork%20facilitator%20with%20broad%20mainnet%20coverage%20across%20EVM%20plus%20Solana%20and%20NEAR%2C%20supporting%20multiple%20schemes%20and%20extensions" target="_blank" rel="noopener">Listed in the official x402 facilitator directory ↗</a></p>
+        </div>
+        <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
+          <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
+          <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
+        </a>
+        <a class="work-item" href="https://ai.workplacefiles.com" target="_blank" rel="noopener">
+          <div class="work-top"><span class="work-title"><span class="logo">W</span>Workplacefiles AI <span class="arrow">↗</span></span><span class="year">2026</span></div>
+          <p class="desc">Agent workflows that automate recurring knowledge work — briefs, reports, meeting follow-ups — with reviewable outputs, Markdown files and rollback history.</p>
+        </a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="blockchain">
+    <h2>Blockchain &amp; ZK Projects</h2>
+    <div class="work">
       <a class="work-item" href="https://youtu.be/IDDnQ85-xOo" target="_blank" rel="noopener">
         <div class="work-top"><span class="work-title"><span class="logo">Z</span>ZK Rollup L2 Governance <span class="arrow">↗</span></span><span class="year">2025</span></div>
         <p class="desc">A zero-knowledge rollup layer 2 for on-chain governance and voting, usable by both Web3 and Web2 apps, with a Go backend and Avail for data availability. Won a $50K Avail grant.</p>
@@ -244,14 +295,6 @@
         <div class="work-top"><span class="work-title"><span class="logo">C</span>Offline Credit Scoring</span><span class="year">2024</span></div>
         <p class="desc">Credit scoring for emerging markets that works offline. Won the Stellar Surge pitch competition.</p>
       </div>
-      <a class="work-item" href="https://github.com/JUSTICEESSIELP/language-recognition" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">L</span>Language Identification <span class="arrow">↗</span><small class="sub">Learning project</small></span><span class="year">2020</span></div>
-        <p class="desc">Rebuilt the Hasso Plattner Institute&#39;s CRNN language-identification model (ICONIP 2017) to learn deep learning — a convolutional + recurrent network that tells apart spoken English, German, French, Spanish, Chinese and Russian, served through a small web app. Keras / TensorFlow, Python.</p>
-      </a>
-      <a class="work-item" href="https://github.com/JUSTICEESSIELP/KidFriendlySocial" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">K</span>KidFriendlySocial <span class="arrow">↗</span></span><span class="year">2023</span></div>
-        <p class="desc">A safe social media web app for kids — BERT detects bad language and GPT-3 recommends content. Deployed with Docker and Kubernetes on DigitalOcean, with CI/CD and monitoring.</p>
-      </a>
     </div>
   </section>
 
@@ -371,7 +414,8 @@
 
   const commands = [
     { label: 'Work Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
+    { label: 'AI Projects', href: '#projects' },
+    { label: 'Blockchain & ZK Projects', href: '#blockchain' },
     { label: 'Writing', href: '#writing' },
     { label: 'Awards', href: '#awards' },
     { label: 'Leadership', href: '#leadership' },
