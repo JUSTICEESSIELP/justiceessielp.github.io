@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cover Letters — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #faf9f5; --foreground: #1f1e1c; --muted: #6f6b64;
+    --border: rgba(20, 20, 19, 0.12); --card: #f0eee6; --danger: #b3261e;
+  }
+  :root[data-theme="dark"] {
+    --background: #141413; --foreground: #f5f4f0; --muted: #a39d95;
+    --border: rgba(250, 249, 245, 0.12); --card: #232220; --danger: #f2a39b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--background); color: var(--foreground); font: 15px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 32px 64px; }
+  h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 30px; line-height: 1.2; }
+  .lede { color: var(--muted); margin-top: 4px; }
+  a { color: inherit; }
+  .back { display: inline-block; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 20px; }
+  .back:hover { color: var(--foreground); }
+  .panel { margin-top: 28px; border: 1px solid var(--border); border-radius: 12px; padding: 22px; background: var(--card); }
+  label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+  label small { font-weight: 400; color: var(--muted); }
+  input, textarea {
+    width: 100%; font: inherit; color: var(--foreground); background: var(--background);
+    border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; outline: none;
+  }
+  input:focus, textarea:focus { border-color: var(--muted); }
+  .field + .field { margin-top: 14px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .row .field + .field { margin-top: 0; }
+  textarea { resize: vertical; min-height: 72px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; font: 500 14px Inter, sans-serif;
+    padding: 10px 16px; border-radius: 8px; background: var(--foreground); color: var(--background);
+  }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.ghost { background: transparent; color: var(--foreground); border: 1px solid var(--border); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 18px; }
+  .status { font-size: 13px; color: var(--muted); }
+  .status.error { color: var(--danger); }
+  .spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; display: none; }
+  .busy .spinner { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #letter { min-height: 360px; font-size: 15px; line-height: 1.65; }
+  .hidden { display: none; }
+  .meta { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+  @media (max-width: 600px) {
+    .wrap { padding: 32px 16px 48px; }
+    .row { grid-template-columns: 1fr; }
+    .panel { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← Back to portfolio</a>
+  <h1>Cover letters</h1>
+  <p class="lede">Paste a company and role; get a tailored first draft from your profile.</p>
+
+  <form id="login" class="panel" autocomplete="on">
+    <div class="field">
+      <label for="password">Admin password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+    </div>
+    <div class="actions">
+      <button class="btn" type="submit"><span class="spinner"></span>Unlock</button>
+      <span class="status" id="login-status" role="status"></span>
+    </div>
+  </form>
+
+  <form id="generator" class="panel hidden">
+    <div class="field">
+      <label for="companyUrl">Company website</label>
+      <input id="companyUrl" type="url" placeholder="https://company.com" required>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="role">Role</label>
+        <input id="role" type="text" placeholder="AI Engineer" required>
+      </div>
+      <div class="field">
+        <label for="jobUrl">Job post link <small>(optional)</small></label>
+        <input id="jobUrl" type="url" placeholder="https://…">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="recipientName">Addressed to <small>(optional)</small></label>
+        <input id="recipientName" type="text" placeholder="Jane Doe">
+      </div>
+      <div class="field">
+        <label for="recipientTitle">Their title <small>(optional)</small></label>
+        <input id="recipientTitle" type="text" placeholder="CEO">
+      </div>
+    </div>
+    <div class="field">
+      <label for="notes">Anything to emphasise <small>(optional)</small></label>
+      <textarea id="notes" placeholder="e.g. mention Solvador and that I'm open to relocating"></textarea>
+    </div>
+    <div class="actions">
+      <button class="btn" type="submit"><span class="spinner"></span>Write cover letter</button>
+      <button class="btn ghost" type="button" id="lock">Lock</button>
+      <span class="status" id="gen-status" role="status"></span>
+    </div>
+  </form>
+
+  <section id="result" class="panel hidden">
+    <label for="letter">Draft <small>— edit freely before sending</small></label>
+    <textarea id="letter"></textarea>
+    <p class="meta" id="sources"></p>
+    <div class="actions">
+      <button class="btn" type="button" id="copy">Copy</button>
+      <button class="btn ghost" type="button" id="download">Download .txt</button>
+    </div>
+  </section>
+</div>
+
+<script>
+  // Set to the deployed Worker's address
+  const API = 'https://cover-letters.essie-312.workers.dev';
+
+  const $ = (id) => document.getElementById(id);
+  let password = '';
+  try { password = sessionStorage.getItem('cl-pass') || ''; } catch (e) {}
+
+  const messages = {
+    wrong_password: 'Wrong password.',
+    too_many_attempts: 'Too many attempts. Try again in 10 minutes.',
+    missing_fields: 'Add the company website and the role.',
+    ai_unreachable: 'Could not reach the AI service. Try again.',
+    ai_error: 'The AI service returned an error.',
+    empty_response: 'The AI returned an empty answer. Try again.',
+  };
+
+  async function call(path, body) {
+    const res = await fetch(API + path, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...body, password }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const err = new Error(messages[data.error] || 'Something went wrong.');
+      err.code = data.error; err.detail = data.detail;
+      throw err;
+    }
+    return data;
+  }
+
+  function setBusy(form, busy) {
+    form.classList.toggle('busy', busy);
+    form.querySelector('button[type=submit]').disabled = busy;
+  }
+
+  function unlock() {
+    $('login').classList.add('hidden');
+    $('generator').classList.remove('hidden');
+    $('companyUrl').focus();
+  }
+
+  function lock() {
+    password = '';
+    try { sessionStorage.removeItem('cl-pass'); } catch (e) {}
+    $('generator').classList.add('hidden');
+    $('result').classList.add('hidden');
+    $('login').classList.remove('hidden');
+    $('password').value = '';
+    $('password').focus();
+  }
+
+  $('login').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget, status = $('login-status');
+    password = $('password').value;
+    status.textContent = ''; status.className = 'status';
+    setBusy(form, true);
+    try {
+      await call('/login', {});
+      try { sessionStorage.setItem('cl-pass', password); } catch (e) {}
+      unlock();
+    } catch (err) {
+      status.textContent = err.message; status.className = 'status error';
+    } finally { setBusy(form, false); }
+  });
+
+  $('generator').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget, status = $('gen-status');
+    status.textContent = 'Reading the company site and writing…'; status.className = 'status';
+    setBusy(form, true);
+    try {
+      const data = await call('/generate', {
+        companyUrl: $('companyUrl').value.trim(), role: $('role').value.trim(), jobUrl: $('jobUrl').value.trim(),
+        recipientName: $('recipientName').value.trim(), recipientTitle: $('recipientTitle').value.trim(),
+        notes: $('notes').value.trim(),
+      });
+      $('letter').value = data.letter;
+      const read = [data.companyRead ? 'company site' : null, data.jobRead ? 'job post' : null].filter(Boolean);
+      $('sources').textContent = read.length
+        ? 'Used: ' + read.join(' and ') + '. Check every claim before sending.'
+        : "Couldn't read the company site, so company details are kept general. Add notes and regenerate for a sharper letter.";
+      $('result').classList.remove('hidden');
+      status.textContent = '';
+      $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      if (err.code === 'wrong_password') { lock(); $('login-status').textContent = 'Session expired. Unlock again.'; }
+      status.textContent = err.message + (err.detail ? ' (' + err.detail + ')' : ''); status.className = 'status error';
+    } finally { setBusy(form, false); }
+  });
+
+  $('lock').addEventListener('click', lock);
+
+  $('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('letter').value); $('copy').textContent = 'Copied'; }
+    catch (e) { $('letter').select(); document.execCommand('copy'); $('copy').textContent = 'Copied'; }
+    setTimeout(() => { $('copy').textContent = 'Copy'; }, 1500);
+  });
+
+  $('download').addEventListener('click', () => {
+    const company = (() => { try { return new URL($('companyUrl').value).hostname.replace(/^www\./, ''); } catch (e) { return 'company'; } })();
+    const blob = new Blob([$('letter').value], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Cover-Letter-' + company + '.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  if (password) unlock(); else $('password').focus();
+</script>
+</body>
+</html>
