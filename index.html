@@ -106,6 +106,8 @@
   .video-preview .play { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: rgba(0,0,0,.65); }
   .video-preview .play::after { content: ""; position: absolute; left: 18px; top: 14px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
   .video-preview .video-label { position: absolute; left: 8px; bottom: 8px; font-size: 12px; color: #fff; background: rgba(0,0,0,.65); padding: 2px 8px; border-radius: 999px; }
+  .talk .video-preview { margin-left: 0; max-width: 360px; }
+  .talk:hover .video-preview img { transform: scale(1.02); }
   .card-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; padding-left: 30px; font-size: 13px; }
   .card-links a { color: var(--foreground); border-bottom: 1px solid var(--border); }
   .card-links a:hover { border-color: var(--foreground); }
@@ -362,6 +364,7 @@
   <section class="section" id="talks">
     <h2>Talks &amp; Pitches</h2>
     <ul class="awards">
+      <li><a class="cert talk" href="https://www.youtube.com/live/v-WpsBzGd8Y" target="_blank" rel="noopener"><div><div class="award-name">The Graph Builders Office Hours #58 — Building Africa&#39;s Crypto Infra <span class="arrow">↗</span></div><div class="award-sub">Podcast guest on The Graph&#39;s livestream</div><span class="video-preview"><img src="https://i.ytimg.com/vi/v-WpsBzGd8Y/hqdefault.jpg" alt="The Graph Builders Office Hours #58" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span><span class="video-label">Watch · 40 min</span></span></div><span class="year">2024</span></a></li>
       <li><div><div class="award-name">QuickNode Accelerator Pitch Day</div><div class="award-sub">Pitched EcoFundMe to Dragonfly, Halo Capital and 7 other VCs</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">UNICEF Digital Public Goods Stakeholder Forum</div><div class="award-sub">Presented EcoClime Africa's work on Africa's environmental challenges</div></div><span class="year">2024</span></li>
       <li><div><div class="award-name">Stellar Surge Pitch Competition</div><div class="award-sub">Pitched an offline credit scoring system — and won</div></div><span class="year">2024</span></li>
