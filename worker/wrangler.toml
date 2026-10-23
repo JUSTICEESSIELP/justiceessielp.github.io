@@ -1,6 +1,8 @@
 name = "cover-letters"
 main = "src/index.js"
 compatibility_date = "2024-09-23"
+# Justicessiel@gmail.com's Cloudflare account (your token can see several, so name it explicitly)
+account_id = "7fe15942e45de78396088b33436a22cf"
 
 [vars]
 # Any model AnyAPI offers, in "provider/model" form
