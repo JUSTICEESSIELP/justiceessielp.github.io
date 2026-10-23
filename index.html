@@ -93,6 +93,9 @@
   .cert { display: flex; justify-content: space-between; gap: 16px; width: 100%; }
   .cert:hover .award-name { text-decoration: underline; }
   .year { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .card-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; padding-left: 30px; font-size: 13px; }
+  .card-links a { color: var(--foreground); border-bottom: 1px solid var(--border); }
+  .card-links a:hover { border-color: var(--foreground); }
   .desc { color: var(--muted); font-size: 13.5px; margin-top: 4px; padding-left: 30px; max-width: 460px; }
 
   .view-all { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 14px; margin-top: 14px; }
@@ -142,7 +145,7 @@
     footer { padding: 16px 16px 24px; }
     .frame { border: 0; }
     .highlights { grid-template-columns: 1fr; }
-    .desc { padding-left: 0; }
+    .desc, .card-links { padding-left: 0; }
   }
 </style>
 </head>
@@ -216,10 +219,11 @@
   <section class="section" id="projects">
     <h2>Impressive Projects</h2>
     <div class="work">
-      <a class="work-item" href="https://solvador.com" target="_blank" rel="noopener">
-        <div class="work-top"><span class="work-title"><span class="logo">S</span>Solvador <span class="arrow">↗</span></span><span class="year">2026</span></div>
+      <div class="work-item">
+        <div class="work-top"><a class="work-title" href="https://solvador.com" target="_blank" rel="noopener"><span class="logo">S</span>Solvador <span class="arrow">↗</span></a><span class="year">2026</span></div>
         <p class="desc">x402 payment facilitator for agentic and private payments — one integration settles stablecoin payments across 15 networks, including Base, Solana, Arbitrum and NEAR. Winner of Coinbase Batches 003.</p>
-      </a>
+        <p class="card-links"><a href="https://solvador.com" target="_blank" rel="noopener">solvador.com ↗</a><a href="https://docs.x402.org/dev-tools/facilitators#:~:text=Multi%2Dnetwork%20facilitator%20with%20broad%20mainnet%20coverage%20across%20EVM%20plus%20Solana%20and%20NEAR%2C%20supporting%20multiple%20schemes%20and%20extensions" target="_blank" rel="noopener">Listed in the official x402 facilitator directory ↗</a></p>
+      </div>
       <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
         <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
         <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
