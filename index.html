@@ -62,6 +62,9 @@
   .socials { display: flex; gap: 14px; margin-top: 18px; color: var(--muted); }
   .socials a:hover { color: var(--foreground); }
   .socials svg { width: 16px; height: 16px; display: block; }
+  .cv-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; background: var(--foreground); color: var(--background); transition: opacity .15s; }
+  .cv-btn:hover { opacity: .85; }
+  .cv-btn svg { width: 14px; height: 14px; }
   .controls { display: flex; gap: 2px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
   .controls button {
     background: none; border: 0; color: var(--muted); cursor: pointer;
@@ -182,6 +185,7 @@
           <a href="https://www.linkedin.com/in/essiel-justice/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zM7.1 20.5H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></a>
           <a href="mailto:justicessiel@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
         </div>
+        <a class="cv-btn" href="resume.pdf" download="Prince-Justice-Sena-CV.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download CV</a>
       </div>
       <div class="controls">
         <button id="cmdk" aria-label="Open command menu">⌘K</button>
@@ -348,7 +352,6 @@
       <li><div><div class="award-name">Graph Africa</div><div class="award-sub">Co-built the community and onboarded 200+ African builders</div></div></li>
       <li><div><div class="award-name">Africans Who Invest — Fellow &amp; Facilitator</div><div class="award-sub">Investment education workshops and mentoring for students across Africa</div></div><span class="year">2023 — Now</span></li>
       <li><div><div class="award-name">Tech Lead — 2024 Parliamentary Campaign</div><div class="award-sub">Built an offline voter-registration data tool for a parliamentary candidate in Ashaiman Municipality; led planning and the team</div></div><span class="year">2024</span></li>
-      <li><div><div class="award-name">Data Science Curriculum Consultant — University of Ghana</div><div class="award-sub">Helped faculty design the MSc Data Science program</div></div><span class="year">2019 — 2022</span></li>
       <li><div><div class="award-name">Assistant Director &amp; STEM Instructor — Kingscourt International School</div><div class="award-sub">Taught maths and science to Grades 6–9 and started a Python and data analysis club</div></div><span class="year">2018 — 2020</span></li>
     </ul>
   </section>
@@ -435,6 +438,7 @@
     { label: 'Skills', href: '#skills' },
     { label: 'Education', href: '#education' },
     { label: 'Toggle theme', run: toggleTheme },
+    { label: 'Download CV (PDF)', href: 'resume.pdf' },
     { label: 'Email me', href: 'mailto:justicessiel@gmail.com' },
   ];
   const bg = document.getElementById('palette'), input = document.getElementById('palette-input'), list = document.getElementById('palette-list');
