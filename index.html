@@ -105,21 +105,27 @@
   .work-item:hover .video-preview img { transform: scale(1.02); }
   .video-preview .play { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: rgba(0,0,0,.65); }
   .video-preview .play::after { content: ""; position: absolute; left: 18px; top: 14px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
-  .video-preview .video-label { position: absolute; left: 8px; bottom: 8px; font-size: 12px; color: #fff; background: rgba(0,0,0,.65); padding: 2px 8px; border-radius: 999px; }
+  .video-preview .video-label { position: absolute; left: 10px; bottom: 10px; font-size: 12px; font-weight: 500; color: #fff; background: rgba(0,0,0,.72); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 999px; transition: background .15s; }
+  .work-item:hover .video-label, .talk:hover .video-label { background: rgba(0,0,0,.88); }
   .talk .video-preview { margin-left: 0; max-width: 360px; }
   .talk:hover .video-preview img { transform: scale(1.02); }
-  .gallery { display: grid; grid-template-columns: 1fr; gap: 18px; }
-  .gallery figure { margin: 0; }
-  .gallery img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; }
-  .gallery figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
   .awards li.has-photo { display: block; }
-  .award-photo { margin: 10px 0 0; max-width: 100%; }
-  .award-photo img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; }
-  .award-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .gallery figure { margin: 0; }
+  .gallery a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--card); }
+  .gallery img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .25s ease; }
+  .gallery a:hover img { transform: scale(1.03); }
+  .gallery figcaption { font-size: 12.5px; line-height: 1.45; color: var(--muted); margin-top: 8px; }
+  .award-media { display: flex; gap: 10px; margin-top: 10px; }
+  .award-media a { width: 168px; flex: none; }
+  .award-media img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); transition: opacity .15s; }
+  .award-media a:hover img { opacity: .85; }
+  .award-media span { display: block; font-size: 12px; color: var(--muted); margin-top: 5px; }
+  .video-preview img { object-position: center; }
   .card-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; padding-left: 30px; font-size: 13px; }
   .card-links a { color: var(--foreground); border-bottom: 1px solid var(--border); }
   .card-links a:hover { border-color: var(--foreground); }
-  .desc { color: var(--muted); font-size: 13.5px; margin-top: 4px; padding-left: 30px; max-width: 460px; }
+  .desc { color: var(--muted); font-size: 13.5px; margin-top: 4px; padding-left: 30px; max-width: 580px; }
 
   .view-all { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 14px; margin-top: 14px; }
   .view-all:hover { color: var(--foreground); }
@@ -177,8 +183,18 @@
     footer { padding: 16px 16px 24px; }
     .frame { border: 0; }
     .highlights, .gallery { grid-template-columns: 1fr; }
+    .award-media a { width: auto; flex: 1; }
     .desc, .card-links, .stack { padding-left: 0; }
     .video-preview { margin-left: 0; }
+    .work-top { align-items: flex-start; gap: 10px; }
+    .work-title { flex-wrap: wrap; row-gap: 2px; }
+    .work-title .sub { flex-basis: 100%; margin-left: 30px; }
+    .work-title > .arrow { display: none; }
+    .year { font-size: 12px; white-space: nowrap; padding-top: 2px; }
+    .awards li, .cert { gap: 10px; }
+    .award-name { font-size: 14.5px; }
+    .era-head { flex-wrap: wrap; row-gap: 0; }
+    .posts a { flex-direction: column; gap: 2px; }
   }
 </style>
 </head>
@@ -286,7 +302,7 @@
         <a class="work-item" href="https://youtu.be/1gg9SztBf8k" target="_blank" rel="noopener">
           <div class="work-top"><span class="work-title"><span class="logo">A</span>AgentSound <span class="arrow">↗</span></span><span class="year">Demo</span></div>
           <p class="desc">Pay-per-play music, built on Solvador. Ask an AI agent for a song, and every play pays the artist about a cent from a prepaid balance within a weekly budget. Artists are paid privately in batches on Base and Arbitrum.</p>
-          <span class="video-preview"><img src="https://i.ytimg.com/vi/1gg9SztBf8k/hqdefault.jpg" alt="AgentSound demo video" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span><span class="video-label">Watch the demo · 1:26</span></span>
+          <span class="video-preview"><img src="https://i.ytimg.com/vi/1gg9SztBf8k/maxresdefault.jpg" alt="AgentSound demo video" loading="lazy" width="480" height="360"><span class="video-label"><span aria-hidden="true">▶</span> Watch the demo · 1:26</span></span>
         </a>
         <a class="work-item" href="https://ai.workplacefiles.com" target="_blank" rel="noopener">
           <div class="work-top"><span class="work-title"><span class="logo">W</span>Workplacefiles AI <span class="arrow">↗</span></span><span class="year">2026</span></div>
@@ -343,7 +359,7 @@
     <h2>Awards</h2>
     <ul class="awards">
       <li><div><div class="award-name">Coinbase Batches 003</div><div class="award-sub">Winner with Solvador</div></div></li>
-      <li class="has-photo"><a class="cert" href="assets/dpg-certificate.jpg" target="_blank" rel="noopener"><div><div class="award-name">Digital Public Goods Innovation Contest Awards — Winner <span class="arrow">↗</span></div><div class="award-sub">Greenance (now EcoFundMe), with my co-founder · KOICA-UNICEF program with MEST Africa · view certificate</div></div><span class="year">2024</span></a><figure class="award-photo"><a href="assets/dpg-award-photo.jpg" target="_blank" rel="noopener"><img src="assets/dpg-award-photo.jpg" alt="Receiving the Digital Public Goods Innovation Contest award with my co-founder" loading="lazy" width="1280" height="960"></a><figcaption>With my co-founder at the Digital Public Goods Innovation Contest Awards, July 2024</figcaption></figure></li>
+      <li class="has-photo"><a class="cert" href="assets/dpg-certificate.jpg" target="_blank" rel="noopener"><div><div class="award-name">Digital Public Goods Innovation Contest Awards — Winner <span class="arrow">↗</span></div><div class="award-sub">Greenance (now EcoFundMe), with my co-founder · KOICA-UNICEF program with MEST Africa</div></div><span class="year">2024</span></a><div class="award-media"><a href="assets/dpg-award-photo.jpg" target="_blank" rel="noopener"><img src="assets/dpg-award-photo.jpg" alt="Receiving the Digital Public Goods Innovation Contest award with my co-founder" loading="lazy" width="1280" height="960"><span>At the awards</span></a><a href="assets/dpg-certificate.jpg" target="_blank" rel="noopener"><img src="assets/dpg-certificate.jpg" alt="Digital Public Goods Innovation Contest Awards winner certificate" loading="lazy" width="1280" height="908"><span>Certificate</span></a></div></li>
       <li><div><div class="award-name">Avail Grant — $50,000</div><div class="award-sub">For EcoFundMe and the ZK Rollup L2 Governance, built on Avail's data availability layer</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">QuickNode Accelerator</div><div class="award-sub">With EcoFundMe · pitched to Dragonfly, Halo Capital and other VCs</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">Arbitrum × StackUp Hackathon — 1st Place</div><div class="award-sub">Offline Uniswap DEX · $2,500 and a sponsored trip to DevCon 2024, Bangkok</div></div><span class="year">2024</span></li>
@@ -383,7 +399,7 @@
     <h2>Talks &amp; Pitches</h2>
     <ul class="awards">
       <li><a class="cert" href="https://x.com/Based_Africa/status/2091813149649371156" target="_blank" rel="noopener"><div><div class="award-name">Base Africa Podcast — Trust for the Agentic Economy <span class="arrow">↗</span></div><div class="award-sub">Conversation with Base (Coinbase) on compliance infrastructure for AI agents: agent identity, verified execution and my journey as a builder</div></div><span class="year">2026</span></a></li>
-      <li><a class="cert talk" href="https://www.youtube.com/live/v-WpsBzGd8Y" target="_blank" rel="noopener"><div><div class="award-name">The Graph Builders Office Hours #58 — Building Africa&#39;s Crypto Infra <span class="arrow">↗</span></div><div class="award-sub">Podcast guest on The Graph&#39;s livestream</div><span class="video-preview"><img src="https://i.ytimg.com/vi/v-WpsBzGd8Y/hqdefault.jpg" alt="The Graph Builders Office Hours #58" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span><span class="video-label">Watch · 40 min</span></span></div><span class="year">2024</span></a></li>
+      <li><a class="cert talk" href="https://www.youtube.com/live/v-WpsBzGd8Y" target="_blank" rel="noopener"><div><div class="award-name">The Graph Builders Office Hours #58 — Building Africa&#39;s Crypto Infra <span class="arrow">↗</span></div><div class="award-sub">Podcast guest on The Graph&#39;s livestream</div><span class="video-preview"><img src="https://i.ytimg.com/vi/v-WpsBzGd8Y/maxresdefault.jpg" alt="The Graph Builders Office Hours #58" loading="lazy" width="480" height="360"><span class="video-label"><span aria-hidden="true">▶</span> Watch · 40 min</span></span></div><span class="year">2024</span></a></li>
       <li><div><div class="award-name">QuickNode Accelerator Pitch Day</div><div class="award-sub">Pitched EcoFundMe to Dragonfly, Halo Capital and 7 other VCs</div></div><span class="year">2025</span></li>
       <li><div><div class="award-name">UNICEF Digital Public Goods Stakeholder Forum</div><div class="award-sub">Presented EcoClime Africa's work on Africa's environmental challenges</div></div><span class="year">2024</span></li>
       <li><div><div class="award-name">Stellar Surge Pitch Competition</div><div class="award-sub">Pitched an offline credit scoring system — and won</div></div><span class="year">2024</span></li>
